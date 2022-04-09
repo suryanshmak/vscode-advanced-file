@@ -7,6 +7,7 @@ import { Path, endsWithPathSeparator } from "./path";
 import { Rules } from "./filter";
 import { FileItem, fileRecordCompare } from "./fileitem";
 import { action, Action } from "./action";
+import { Actions } from "./actions";
 
 export enum ConfigItem {
   RemoveIgnoredFiles = "removeIgnoredFiles",
@@ -40,12 +41,13 @@ export class FileBrowser {
   inActions: boolean = false;
   keepAlive: boolean = false;
   autoCompletion?: AutoCompletion;
-
+  allActions: Actions;
   actionsButton: QuickInputButton;
   stepOutButton: QuickInputButton;
   stepInButton: QuickInputButton;
 
   constructor(path: Path, file: Option<string>) {
+    this.allActions = new Actions(path, file);
     this.stepInButton = this.createAction("arrow-right", "Step into folder");
     this.stepOutButton = this.createAction("arrow-left", "Step out of folder");
     this.actionsButton = this.createAction(
@@ -107,7 +109,7 @@ export class FileBrowser {
     this.current.title = this.path.fsPath;
     this.current.value = "";
 
-    const stat = (
+    const stat: any = (
       await Result.try(vscode.workspace.fs.stat(this.path.uri))
     ).unwrap();
 
@@ -256,7 +258,7 @@ export class FileBrowser {
   async stepIn() {
     this.activeItem().ifSome(async (item) => {
       if (item.action !== undefined) {
-        this.runAction(item);
+        this.allActions.runAction(item);
       } else if (item.fileType !== undefined) {
         if ((item.fileType & FileType.Directory) === FileType.Directory) {
           await this.stepIntoFolder(this.path.append(item.name));
@@ -338,7 +340,7 @@ export class FileBrowser {
     this.autoCompletion = undefined;
     this.activeItem().ifSome((item) => {
       if (item.action !== undefined) {
-        this.runAction(item);
+        this.allActions.runAction(item);
       } else if (
         item.fileType !== undefined &&
         (item.fileType & FileType.Directory) === FileType.Directory

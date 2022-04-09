@@ -7,39 +7,34 @@ import { Result, Option, Some } from "./rust";
 import { Path } from "./path";
 
 export class Actions extends FileBrowser {
-  constructor(
-    public value: string,
-    public item: FileItem,
-    path: Path,
-    file: Option<string>
-  ) {
+  constructor(path: Path, file: Option<string>) {
     super(path, file);
   }
 
-  async runAction() {
-    switch (this.item.action) {
+  async runAction(item: FileItem) {
+    switch (item.action) {
       case Action.NewFolder: {
         await workspace.fs.createDirectory(this.path.uri);
         await this.update();
         break;
       }
       case Action.NewFile: {
-        const uri = this.path.append(this.item.name).uri;
+        const uri = this.path.append(item.name).uri;
         this.openFile(uri.with({ scheme: "untitled" }));
         break;
       }
       case Action.OpenFile: {
         const path = this.path.clone();
-        if (this.item.name && this.item.name.length > 0) {
-          path.push(this.item.name);
+        if (item.name && item.name.length > 0) {
+          path.push(item.name);
         }
         this.openFile(path.uri);
         break;
       }
       case Action.OpenFileBeside: {
         const path = this.path.clone();
-        if (this.item.name && this.item.name.length > 0) {
-          path.push(this.item.name);
+        if (item.name && item.name.length > 0) {
+          path.push(item.name);
         }
         this.openFile(path.uri, ViewColumn.Beside);
         break;
@@ -131,10 +126,14 @@ export class Actions extends FileBrowser {
         break;
       }
       case Action.JumpToLine: {
-        commands.executeCommand("workbench.action.gotoLine", this.path.uri);
+        commands.executeCommand(
+          "workbench.action.gotoLine",
+          this.path.uri,
+          item.name
+        );
       }
       default:
-        throw new Error(`Unhandled action ${this.item.action}`);
+        throw new Error(`Unhandled action ${item.action}`);
     }
   }
 }
