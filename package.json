@@ -1,9 +1,0 @@
-{
-  "name": "advanced-file",
-  "version": "1.0.0",
-  "description": "best dialog for file creation/renaming, deleting, opening",
-  "main": "extensions.js",
-  "repository": "https://github.com/suryanshmak/vscode-advanced-file.git",
-  "author": "Suryansh Makharia <makhariasuryansh7@gmail.com>",
-  "license": "MIT"
-}
