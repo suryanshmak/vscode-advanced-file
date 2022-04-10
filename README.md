@@ -30,4 +30,4 @@ yarn install
 
 ### 1.0.0
 
-Initial release of advanced file
+Initial release of advanced-file
