@@ -31,3 +31,5 @@ yarn install
 ### 1.0.0
 
 Initial release of advanced-file
+
+### [CHANGELOG](https://github.com/suryanshmak/vscode-advanced-file/CHANGELOG.md)
