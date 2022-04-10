@@ -32,4 +32,4 @@ yarn install
 
 Initial release of advanced-file
 
-### [CHANGELOG](https://github.com/suryanshmak/vscode-advanced-file/CHANGELOG.md)
+### [CHANGELOG](https://github.com/suryanshmak/vscode-advanced-file/blob/main/CHANGELOG.md)
