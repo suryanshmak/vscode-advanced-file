@@ -15,7 +15,6 @@ import { endsWithPathSeparator, Path } from "./path";
 import { None, Option, Result, Some } from "./rust";
 import * as OSPath from "path";
 import * as vscode from "vscode";
-import * as fs from "fs";
 import { homedir } from "os";
 import { Rules } from "./filter";
 
@@ -323,14 +322,18 @@ class AdvancedFile extends vscode.Disposable {
   async runAction(item: FileItem) {
     switch (item.action) {
       case Action.NewFolder: {
-        fs.mkdir(OSPath.join(this.path.toString(), item.name), (err) =>
-          console.log(err)
+        const folder = Uri.parse(
+          OSPath.join(this.path.uri.toString(), item.name)
         );
+        workspace.fs.createDirectory(folder);
+
         await this.update();
+        break;
       }
       case Action.NewFile: {
         const uri = this.path.append(item.name).uri;
         this.openFile(uri.with({ scheme: "untitled" }));
+        break;
       }
       case Action.OpenFile: {
         const path = this.path.clone();
@@ -338,6 +341,7 @@ class AdvancedFile extends vscode.Disposable {
           path.push(item.name);
         }
         this.openFile(path.uri);
+        break;
       }
       case Action.OpenFileBeside: {
         const path = this.path.clone();
@@ -345,6 +349,7 @@ class AdvancedFile extends vscode.Disposable {
           path.push(item.name);
         }
         this.openFile(path.uri, ViewColumn.Beside);
+        break;
       }
       case Action.RenameFile: {
         this.keepAlive = true;
@@ -392,6 +397,7 @@ class AdvancedFile extends vscode.Disposable {
         this.keepAlive = false;
         this.inActions = false;
         this.update();
+        break;
       }
       case Action.DeleteFile: {
         this.keepAlive = true;
@@ -422,12 +428,15 @@ class AdvancedFile extends vscode.Disposable {
         this.keepAlive = false;
         this.inActions = false;
         this.update();
+        break;
       }
       case Action.OpenFolder: {
         commands.executeCommand("vscode.openFolder", this.path.uri);
+        break;
       }
       case Action.OpenFolderInNewWindow: {
         commands.executeCommand("vscode.openFolder", this.path.uri, true);
+        break;
       }
       default:
         throw new Error(`Unhandled action ${item.action}`);

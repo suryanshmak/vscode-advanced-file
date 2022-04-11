@@ -65,6 +65,6 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
-    "fs": "^0.0.1-security"
+    "@types/mkdirp": "^1.0.2"
   }
 }
