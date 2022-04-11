@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { QuickPickItem, FileType } from "vscode";
 import { Action } from "./action";
-import { config, ConfigItem } from "./extension";
+import { config, ConfigItem } from "./advancedFile";
 
 export class FileItem implements QuickPickItem {
   name: string;

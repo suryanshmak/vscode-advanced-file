@@ -6,7 +6,7 @@ import ignore from "ignore";
 import { Ignore } from "ignore";
 import { FileItem, itemIsDir } from "./fileitem";
 import * as OSPath from "path";
-import { config, ConfigItem } from "./extension";
+import { config, ConfigItem } from "./advancedFile";
 
 export class Rules {
   private path: Path;

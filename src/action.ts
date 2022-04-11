@@ -6,7 +6,6 @@ export enum Action {
   RenameFile,
   DeleteFile,
   OpenFolder,
-  JumpToLine,
   OpenFolderInNewWindow,
 }
 
