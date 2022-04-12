@@ -3,12 +3,12 @@
 - No need to rely on `vscode.quickOpen`
 - Create, rename, delete, open files/folders without relying on the sidebar
 
-![screencap](https://github.com/suryanshmak/images/preview.gif)
+![screencap](https://github.com/suryanshmak/vscode-advanced-file/images/preview.gif)
 
 - Jump to specific lines
 - Find specific symbols
 
-![screecap-2](https://github.com/suryanshmak/images/preview-2.gif)
+![screecap-2](https://github.com/suryanshmak/vscode-advanced-file/images/preview-2.gif)
 
 ## Requirements
 
