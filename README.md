@@ -8,7 +8,7 @@
 - Jump to specific lines
 - Find specific symbols
 
-![screecap-2](https://gitub.com/suryanshmak/images/preview-2.gif)
+![screecap-2](https://github.com/suryanshmak/images/preview-2.gif)
 
 ## Requirements
 
