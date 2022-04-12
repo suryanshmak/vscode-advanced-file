@@ -37,6 +37,33 @@
       }
     ]
   },
+  "keybindings": [
+    {
+      "key": "right",
+      "command": "advanced-file.stepIn",
+      "when": "inAdvancedFile"
+    },
+    {
+      "key": "left",
+      "command": "advanced-file.stepOut",
+      "when": "inAdvancedFile"
+    },
+    {
+      "key": "cmd+r",
+      "command": "advanced-file.actions",
+      "when": "inAdvancedFile"
+    },
+    {
+      "key": "tab",
+      "command": "advanced-fil.tabNext",
+      "when": "inAdvancedFile"
+    },
+    {
+      "key": "shift+tab",
+      "command": "advanced-file.tabPrev",
+      "when": "inAdvancedFile"
+    }
+  ],
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",

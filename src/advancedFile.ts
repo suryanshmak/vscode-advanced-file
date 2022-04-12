@@ -202,7 +202,6 @@ class AdvancedFile extends vscode.Disposable {
     } else if (value.startsWith("@")) {
       commands.executeCommand(
         "workbench.action.showAllSymbols",
-        this.path.uri,
         value.replace("@", "")
       );
     } else {
@@ -339,10 +338,10 @@ class AdvancedFile extends vscode.Disposable {
           if (!language) {
             break;
           }
-          const extension = language
-            ?.split(" ")[1]
-            .replace("(", "")
-            .replace(")", "");
+          const extension = language?.slice(
+            language.indexOf("(") + 1,
+            language.indexOf(")")
+          );
           const fileUri = this.path.append(`${item.name}.${extension}`).uri;
           this.openFile(fileUri.with({ scheme: "untitled" }));
           break;
