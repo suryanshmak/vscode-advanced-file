@@ -13,3 +13,7 @@ All notable changes to the "file" extension will be documented in this file.
 ## [1.0.2]
 
 - Fix minor keybind issues and some code cleanup
+
+## [1.0.3]
+
+- Fix changing directory
