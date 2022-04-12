@@ -18,6 +18,7 @@ import * as vscode from "vscode";
 import { homedir } from "os";
 import { Rules } from "./filter";
 import pLanguages from "./languages";
+import { setActive } from "./extension";
 
 interface AutoCompletion {
   index: number;
@@ -35,8 +36,6 @@ export enum ConfigItem {
 export function config<T>(item: ConfigItem): T | undefined {
   return workspace.getConfiguration("advanced-file").get(item);
 }
-
-let active: Option<AdvancedFile> = None;
 
 export function setContext(state: boolean) {
   vscode.commands.executeCommand("setContext", "inAdvancedFile", state);
@@ -98,7 +97,7 @@ class AdvancedFile extends vscode.Disposable {
   dispose() {
     setContext(false);
     this.current.dispose();
-    active = None;
+    setActive(None);
   }
 
   hide() {
@@ -206,16 +205,16 @@ class AdvancedFile extends vscode.Disposable {
       );
     } else {
       endsWithPathSeparator(value).match(
-        (path) => {
-          if (path === "~") {
+        () => {},
+        () => {
+          if (value === "~") {
             this.stepIntoFolder(Path.fromFilePath(homedir()));
-          } else if (path === "..") {
+          } else if (value === "..") {
             this.stepOut();
           } else {
-            this.stepIntoFolder(this.path.append(path));
+            this.stepIntoFolder(this.path.append(value));
           }
-        },
-        () => {
+
           const newFile = this.newItem(
             "$(file-add)",
             "Create a new file",
@@ -229,7 +228,7 @@ class AdvancedFile extends vscode.Disposable {
             Action.NewFolder
           );
           this.current.items = [...this.items, newFile, newFolder];
-          if (value.includes(".")) {
+          if (value.includes(".") && value !== ".") {
             this.current.activeItems = [newFile];
             this.current.items = [...this.items, newFile];
           } else {

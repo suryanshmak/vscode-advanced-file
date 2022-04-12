@@ -1,4 +1,4 @@
-import { Uri, commands, workspace, window, ExtensionContext } from "vscode";
+import { Uri, workspace, window, ExtensionContext } from "vscode";
 import * as vscode from "vscode";
 import { homedir } from "os";
 import { None, Option, Some } from "./rust";
@@ -7,8 +7,12 @@ import AdvancedFile, { setContext } from "./advancedFile";
 
 let active: Option<AdvancedFile> = None;
 
+export const setActive = (af: Option<AdvancedFile>) => {
+  active = af;
+};
+
 export const activate = (context: ExtensionContext) => {
-  setContext(false);
+  setContext(true);
 
   context.subscriptions.push(
     vscode.commands.registerCommand("advanced-file.create", () => {
@@ -22,32 +26,33 @@ export const activate = (context: ExtensionContext) => {
         file = path.pop();
       }
       active = Some(new AdvancedFile(path, file));
+
       setContext(true);
     })
   );
 
   context.subscriptions.push(
-    commands.registerCommand("advanced-file.stepIn", () =>
+    vscode.commands.registerCommand("advanced-file.stepIn", () =>
       active.ifSome((active) => active.stepIn())
     )
   );
   context.subscriptions.push(
-    commands.registerCommand("advanced-file.stepOut", () =>
+    vscode.commands.registerCommand("advanced-file.stepOut", () =>
       active.ifSome((active) => active.stepOut())
     )
   );
   context.subscriptions.push(
-    commands.registerCommand("advanced-file.actions", () =>
+    vscode.commands.registerCommand("advanced-file.actions", () =>
       active.ifSome((active) => active.actions())
     )
   );
   context.subscriptions.push(
-    commands.registerCommand("advanced-file.tabNext", () =>
+    vscode.commands.registerCommand("advanced-file.tabNext", () =>
       active.ifSome((active) => active.tabCompletion(true))
     )
   );
   context.subscriptions.push(
-    commands.registerCommand("advanced-file.tabPrev", () =>
+    vscode.commands.registerCommand("advanced-file.tabPrev", () =>
       active.ifSome((active) => active.tabCompletion(false))
     )
   );
