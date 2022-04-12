@@ -2,7 +2,7 @@
   "name": "advanced-file",
   "displayName": "advanced-file",
   "description": "Create, edit, delete, rename, open files/folders with ease",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "https://github.com/suryanshmak/vscode-advanced-file",
   "author": "Suryansh Makharia",
   "publisher": "suryanshmak",
