@@ -205,14 +205,16 @@ class AdvancedFile extends vscode.Disposable {
       );
     } else {
       endsWithPathSeparator(value).match(
-        () => {},
+        (path: string) => {
+          if (path !== ".." && path !== "~") {
+            this.stepIntoFolder(this.path.append(path));
+          }
+        },
         () => {
           if (value === "~") {
             this.stepIntoFolder(Path.fromFilePath(homedir()));
           } else if (value === "..") {
             this.stepOut();
-          } else {
-            this.stepIntoFolder(this.path.append(value));
           }
 
           const newFile = this.newItem(
