@@ -6,10 +6,10 @@ All notable changes to the "file" extension will be documented in this file.
 
 - Initial release
 
-## [1.1.0]
+## [1.0.1]
 
 - Rename plugin
 
-## [1.2.0]
+## [1.0.2]
 
 - Fix minor keybind issues and some code cleanup
