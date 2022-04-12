@@ -1,6 +1,8 @@
 const pLanguages = [
   "TypeScript (ts)",
   "JavaScript (js)",
+  "Typescript React (tsx)",
+  "JavaScript React (jsx)",
   "Rust (rs)",
   "Python (py)",
   "C (c)",
