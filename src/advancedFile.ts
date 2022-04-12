@@ -17,6 +17,7 @@ import * as OSPath from "path";
 import * as vscode from "vscode";
 import { homedir } from "os";
 import { Rules } from "./filter";
+import pLanguages from "./languages";
 
 interface AutoCompletion {
   index: number;
@@ -332,6 +333,20 @@ class AdvancedFile extends vscode.Disposable {
       }
       case Action.NewFile: {
         const uri = this.path.append(item.name).uri;
+        // input which language should the file be in (if not entered)
+        if (!item.name.includes(".")) {
+          const language = await window.showQuickPick(pLanguages);
+          if (!language) {
+            break;
+          }
+          const extension = language
+            ?.split(" ")[1]
+            .replace("(", "")
+            .replace(")", "");
+          const fileUri = this.path.append(`${item.name}.${extension}`).uri;
+          this.openFile(fileUri.with({ scheme: "untitled" }));
+          break;
+        }
         this.openFile(uri.with({ scheme: "untitled" }));
         break;
       }
