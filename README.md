@@ -3,6 +3,7 @@
 - No need to rely on `vscode.quickOpen`
 - Create, rename, delete, open files/folders without relying on the sidebar
 - Jump to specific lines
+- Find specific symbols
 
 ## Requirements
 
