@@ -24,6 +24,12 @@ const pLanguages = [
   "Julia (jl)",
   "Lua (lua)",
   "R (r)",
+  "Vue (vue)",
+  "Angular (ng)",
+  "Vim script (vim)",
+  "CMake (cmake)",
+  "Dockerfile (dockerfile)",
+  "EditorConfig (editorconfig)",
 ].sort();
 
 export default pLanguages;

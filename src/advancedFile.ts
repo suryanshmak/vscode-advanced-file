@@ -218,13 +218,13 @@ class AdvancedFile extends vscode.Disposable {
         },
         () => {
           const newFile = this.newItem(
-            "$(new-file)",
+            "$(file-add)",
             "Create a new file",
             value,
             Action.NewFile
           );
           const newFolder = this.newItem(
-            "$(new-folder)",
+            "$(file-directory-create)",
             "Create a new folder",
             value,
             Action.NewFolder

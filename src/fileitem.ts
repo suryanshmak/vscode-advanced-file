@@ -30,7 +30,6 @@ export class FileItem implements QuickPickItem {
         this.label = `$(file-symlink-file) ${name}`;
       default:
         this.label = `$(file) ${name}`;
-        break;
     }
   }
 }
