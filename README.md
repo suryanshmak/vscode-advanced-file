@@ -36,6 +36,10 @@ yarn install
 
 ### 1.0.0
 
+### 1.0.1
+
+- Rename plugin
+
 Initial release of advanced-file
 
 ### [CHANGELOG](https://github.com/suryanshmak/vscode-advanced-file/blob/main/CHANGELOG.md)
