@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://img.shields.io/github/issues/suryanshmak/vscode-advanced-file" alt="" />
+  <img src="https://img.shields.io/badge/installs-10-blue" alt="" />
+</p>
+
 ## Features
 
 - No need to rely on `vscode.quickOpen`
