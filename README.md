@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/github/issues/suryanshmak/vscode-advanced-file" alt="" />
-  <img src="https://img.shields.io/badge/installs-10-blue" alt="" />
+  <img src="https://img.shields.io/badge/installs-12-blue" alt="" />
 </p>
 
 ## Features
@@ -35,7 +35,7 @@ yarn install
 
 ## Extension Settings
 
-- `advanced-file.open`: set a keybind for ease
+- `advanced-file.open`: cmd/ctrl+shift+p -> Advanced File: Create Dialog
 
 ## Release Notes
 
