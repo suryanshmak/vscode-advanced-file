@@ -1,4 +1,4 @@
-<p align="left">
+<p align="center">
   <img src="https://img.shields.io/github/issues/suryanshmak/vscode-advanced-file" alt="" />
   <img src="https://img.shields.io/badge/installs-21-blue" alt="" />
 </p>
